@@ -1,9 +1,82 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.13">
   <diagram name="第 1 页" id="A3KhLieHLwxe2es9GT4D">
-    <mxGraphModel>
+    <mxGraphModel dx="1166" dy="588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="1XHsIlju2dAWVkTbXADK-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" edge="1" parent="1" source="1XHsIlju2dAWVkTbXADK-1" target="1XHsIlju2dAWVkTbXADK-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="120" />
+              <mxPoint x="300" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-1" value="IMMS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="20" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;fontSize=12;" edge="1" parent="1" source="1XHsIlju2dAWVkTbXADK-2" target="1XHsIlju2dAWVkTbXADK-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-16" value="IInputMethodSession" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="1XHsIlju2dAWVkTbXADK-15">
+          <mxGeometry x="-0.2731" y="8" relative="1" as="geometry">
+            <mxPoint x="20" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-2" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="180" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-3" value="客户端App" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-4" value="EditText" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="220" width="50" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-5" value="IMM" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="220" width="50" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;" edge="1" parent="1" source="1XHsIlju2dAWVkTbXADK-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-6" value="IMS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="530" y="180" width="90" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-7" value="输入法App" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=block;startFill=1;endArrow=none;fontSize=12;" edge="1" parent="1" source="1XHsIlju2dAWVkTbXADK-6" target="1XHsIlju2dAWVkTbXADK-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="140" />
+              <mxPoint x="580" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;" edge="1" parent="1" source="1XHsIlju2dAWVkTbXADK-2" target="1XHsIlju2dAWVkTbXADK-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="110" />
+              <mxPoint x="340" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-12" value="IInputMethodManager" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="118" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-13" value="IInputMethodClient" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="180" y="118" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-14" value="IInputMethod" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="118" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1XHsIlju2dAWVkTbXADK-18" value="IInputContext" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="414" y="288" width="90" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
