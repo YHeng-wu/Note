@@ -761,6 +761,92 @@ public void onServiceConnected(ComponentName name, IBinder service) {
 
 # 输入法管理服务(IMMS)
 
+InputMethodManagerService 是用来管理输入法的系统服务，IMMS 属于系统服务的一部分，随着系统的启动而启动，IMMS 的初始化流程如下图所示：
+
+
+IMMS 的核心实现是 IInputMethodManager.aidl 和 IInputSessionCallback.aidl，前者提供给 IMM 调用，后者提供给 IMS 调用，如下：
+IInputMethodManager.aidl：定义了操作输入法的公共接口对外提供给客户端 IMM，最常用的比如显示、隐藏、切换软键盘等。
+
+IInputSessionCallback.aidl：用于允许输入法创建会话的时候通知 IMMS，之后 IMMS 就可以绑定输入法 IMS 了。
+
+InputMethodManagerService 实现了 IInputMethodManager.aidl 提供给 IMM 使用，MethodCallback 实现了 IInputSessionCallback.aidl，用来回调 IMS 创建的 IInputMethodSession，关键流程如下：
+
+看下 IMMS 的 onSessionCreated 方法实现：
+```java
+oid onSessionCreated(IInputMethod method, IInputMethodSession session,
+                      InputChannel channel) {
+    synchronized (mMethodMap) {
+        if (mCurMethod != null && method != null
+                && mCurMethod.asBinder() == method.asBinder()) {
+            if (mCurClient != null) {
+                // 清理客户端的session
+                clearClientSessionLocked(mCurClient);
+                // 初始化SessionState
+                mCurClient.curSession = new SessionState(mCurClient,
+                        method, session, channel);
+                // 准备显示输入法
+                InputBindResult res = attachNewInputLocked(
+                        InputMethodClient.START_INPUT_REASON_SESSION_CREATED_BY_IME, true);
+                if (res.method != null) {
+                    executeOrSendMessage(mCurClient.client, mCaller.obtainMessageOO(
+                            MSG_BIND_CLIENT, mCurClient.client, res));
+                }
+                return;
+            }
+        }
+    }
+    // Session abandoned.  Close its associated input channel.
+    channel.dispose();
+}
+```
+如上 onSessionCreated 会绑定客户端到此 IMMS 的关键流程结束。
+
+# 输入法(IMS)
+InputMethodService 为标准 UI 元素（输入视图、候选视图和全屏模式下运行）提供了一个基本框架，但如何使用它们取决于特定的实现者，其是自定义输入法的关键类，其本身是一个 Service 的派生类，如下：
+
+```java
+public class PinyinIME extends InputMethodService {
+```
+自定义输入法要在 AndroidManifest.xml 中进行声明，参考如下：
+```xml
+<service android:name=".PinyinIME"
+    android:label="@string/ime_name"
+        android:permission="android.permission.BIND_INPUT_METHOD">
+    <intent-filter>
+        <action android:name="android.view.InputMethod" />
+    </intent-filter>
+    <meta-data android:name="android.view.im" android:resource="@xml/method" />
+</service>
+```
+其中权限 BIND_INPUT_METHOD 的声明可以使之能够连接到系统，设置了一个与 android.view.InputMethod 操作匹配的 Intent。
+
+IMS 的核心实现是 IInputMethod.aidl 和 IIInputMethodSession.aidl，前者提供给 IMMS 调用，后者提供给 IMM 调用，如下：
+
+IInputMethod.aidl：输入法 IMM 是一个Service，其核心实现就是 IInputMethod.aidl 的实现IInputMethodWrapper，提供了操作输入法的核心方法。
+
+IInputMethodSession.aidl：提供了客户端 IMM 操作输入法的接口，IMM 中存在 IInputMethodSession 类型的实例 mCurMethod 供其调用。
+
+收到客户端 IMM 输入操作后，输入法 IMS 将会显示输入法布局，可以参考 SoftKeyboardView 的实现，输入法 IMS 的生命周期如下：
+(ANDROID 官网)
+其关键生命周期如下:
+onBindInput：客户端 IMM 绑定该输入法 IMS 的时候调用。
+onStartInput：用户在编辑框开始输入文字的时候调用。
+onCreateInputView：创建并返回输入区域的视图，第一次显示输入区域视图的时候调用，默认实现返回 null，可实现 onEvaluateInputViewShown 来控制候显示输入区域视图，更改输入区域视图使用 setInputView 进行更改。
+onCreateCandidatesView：创建并返回显示候选词的视图，第一次显示候选词视图的时候调用，默认实现返回 null，可使用 setCandidatesViewShown 方法控制候选词视图的显示，更改候选视图使用 setCandidatesView 进行更改。
+onStartInputView：当前页面的输入框获取了焦点时调用。
+
+# 客户端(IMM)
+InputMethodManager 主要用来处理当前应用程序与输入法之间的交互，每次只能运行一个输入法，多个应用程序使用输入法，确保获得焦点并保证只有一个应用程序在使用输入法，应用程序使用 Textview 及其子类默认实现了这种交互，也可以自定义文本编辑器来实现这种交互。
+
+IMM 的核心实现是 IInputMethodClient.aidl 和 IInputContext.aidl，如下：
+IInputMethodClient.aidl：简单理解为 IMMS 绑定 IMS 的时候通知 IMM 输入法已经准备好了可以进行绑定了，具体是由 IMM 内部实现，对应 mClient。
+IInputContext.aidl：定义操作输入法编辑器 IME 的方法，默认实现是 EditableInputConnection。
+下面看看 IMM 的初始化流程：
+可知，ViewRootImp 创建的时候会获取 IWindowSession，如果 IWindowSession 为空的时候，会通过 WindowManagerService 创建一个 IWindowSession ，其实现为上图中的 Session，在 Session 创建的时候调用 IMMS 的 addClient 将客户端 IMM 的关键实现 IInputMethodClient 和 IInputContext 添加到 IMMS 由 IMMS 统一维护。
+
+IMM 与 IMMS 的交互主要是 IInputMethodManager.aidl，使用时通过 getSystemService 获取 input_method 系统服务，也就是 IMMS，之后就可以调用输入法管理器 IMMS 提供的公共接口了。
+
+IMM 与 IMS 的交互主要是 IInputMethodSession.aidl，定义供客户端操作输入法的方法，IMMS 请求 IInputMethod 创建 IInputMethodSession，IMMS 绑定客户端 IMM 的时候将 IInputMethodSession 传入 IMM。
 
 
 # 6.IMS、IMMS和IMM之间的交互
