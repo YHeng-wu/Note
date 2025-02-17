@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.14" pages="5">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.14" pages="6">
   <diagram name="IME模块交互图" id="A3KhLieHLwxe2es9GT4D">
     <mxGraphModel dx="696" dy="365" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -514,6 +514,55 @@
             <mxGeometry x="300" y="450" width="100" height="20" as="geometry" />
           </mxCell>
         </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="z0RKByvg0YwaEQ4D4jgj" name="IMM">
+    <mxGraphModel dx="1392" dy="730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-1" value="ViewRootimpl" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="90" y="50" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-2" value="WindowManagerGlobal" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="230" y="50" width="170" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-3" value="WindowManagerService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="440" y="50" width="170" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-4" value="Session" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="657" y="50" width="170" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-5" value="InputMethodManagerService" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="860" y="50" width="170" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-6" value="ViewRootImpl(context,display)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="5sxVlnzrmKWpw-rMcwvB-2">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="140" y="150" as="sourcePoint" />
+            <mxPoint x="220" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-8" value="getWindowSession" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="5sxVlnzrmKWpw-rMcwvB-3">
+          <mxGeometry x="-0.0024" width="80" relative="1" as="geometry">
+            <mxPoint x="320" y="210" as="sourcePoint" />
+            <mxPoint x="400" y="210" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-9" value="openSession" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="5sxVlnzrmKWpw-rMcwvB-4">
+          <mxGeometry x="-0.0024" width="80" relative="1" as="geometry">
+            <mxPoint x="530" y="250" as="sourcePoint" />
+            <mxPoint x="735" y="250" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5sxVlnzrmKWpw-rMcwvB-10" value="addClient" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="5sxVlnzrmKWpw-rMcwvB-5">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="740" y="290" as="sourcePoint" />
+            <mxPoint x="820" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
