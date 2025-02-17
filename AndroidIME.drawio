@@ -191,7 +191,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="zWcOCB7yK2CvtCDqZt56" name="输入法拉起流程">
-    <mxGraphModel dx="3480" dy="1825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="819" dy="429" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -201,7 +201,7 @@
         <mxCell id="XwH84VPgO4Bym34SIaJH-6" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="XwH84VPgO4Bym34SIaJH-1">
           <mxGeometry x="45" y="100" width="10" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="XwH84VPgO4Bym34SIaJH-7" value="onKeyDown" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" target="XwH84VPgO4Bym34SIaJH-6" parent="XwH84VPgO4Bym34SIaJH-1">
+        <mxCell id="XwH84VPgO4Bym34SIaJH-7" value="onKeyUp/onTouchEvent" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" target="XwH84VPgO4Bym34SIaJH-6" parent="XwH84VPgO4Bym34SIaJH-1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="50" y="80" as="sourcePoint" />
             <Array as="points">
