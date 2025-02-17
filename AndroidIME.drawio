@@ -134,12 +134,47 @@
     </mxGraphModel>
   </diagram>
   <diagram id="EWQzKdETG6eSZmohPhK9" name="第 3 页">
-    <mxGraphModel dx="1336" dy="415" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1096" dy="365" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ZRgswuxDnuw_puv4fgM8-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-30" y="95" width="120" height="60" as="geometry" />
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;" edge="1" parent="1" source="MgKqnsjIscYqb2wtCfhL-1" target="MgKqnsjIscYqb2wtCfhL-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-1" value="客户端(IMM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="-129" y="29" width="100" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-2" value="输入法管理服务(IMMS)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="39" y="29" width="158" height="301" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;dashed=1;" edge="1" parent="1" source="MgKqnsjIscYqb2wtCfhL-3" target="MgKqnsjIscYqb2wtCfhL-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-3" y="277" />
+              <mxPoint x="-3" y="277" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-3" value="输入法管理服务(IMS)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="239" y="29" width="158" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-5" value="显示、隐藏输入法" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-51" y="149" width="114" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;" edge="1" parent="1" source="MgKqnsjIscYqb2wtCfhL-2" target="MgKqnsjIscYqb2wtCfhL-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="142" y="226" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="218" y="229" />
+              <mxPoint x="218" y="229" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-7" value="显示、隐藏输入法" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="164" y="195" width="114" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MgKqnsjIscYqb2wtCfhL-9" value="返回输入信息" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="52" y="251" width="90" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
