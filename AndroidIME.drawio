@@ -100,8 +100,8 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="_L2OAdhkrZePyM3R2bAZ" name="第 2 页">
-    <mxGraphModel dx="936" dy="415" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="_L2OAdhkrZePyM3R2bAZ" name="类图">
+    <mxGraphModel dx="696" dy="365" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -144,7 +144,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="EWQzKdETG6eSZmohPhK9" name="第 3 页">
+  <diagram id="EWQzKdETG6eSZmohPhK9" name="IME基本概念流程">
     <mxGraphModel dx="1219" dy="429" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
