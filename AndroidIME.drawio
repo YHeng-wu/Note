@@ -653,16 +653,51 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="OituI6MK7DlPU7BmWXEZ-1" value="IMMS" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="90" y="120" width="100" height="300" as="geometry" />
+          <mxGeometry x="90" y="120" width="100" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-5" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="OituI6MK7DlPU7BmWXEZ-1">
+          <mxGeometry x="45" y="110" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-6" value="requestClientSessionLocked" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" target="OituI6MK7DlPU7BmWXEZ-5" parent="OituI6MK7DlPU7BmWXEZ-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="90" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="80" y="120" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="OituI6MK7DlPU7BmWXEZ-2" value="IInputMethodWrapper" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="260" y="120" width="130" height="300" as="geometry" />
+          <mxGeometry x="260" y="120" width="130" height="340" as="geometry" />
         </mxCell>
         <mxCell id="OituI6MK7DlPU7BmWXEZ-3" value="IInputMethodSessionCallbackWrapper" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="450" y="120" width="250" height="300" as="geometry" />
+          <mxGeometry x="450" y="120" width="250" height="340" as="geometry" />
         </mxCell>
         <mxCell id="OituI6MK7DlPU7BmWXEZ-4" value="MethodCallback" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="730" y="120" width="250" height="300" as="geometry" />
+          <mxGeometry x="730" y="120" width="250" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-7" value="createSession" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="OituI6MK7DlPU7BmWXEZ-2">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="140" y="320" as="sourcePoint" />
+            <mxPoint x="220" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-8" value="sessionCreated" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="OituI6MK7DlPU7BmWXEZ-3">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="321" y="350" as="sourcePoint" />
+            <mxPoint x="506" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-9" value="sessionCreated" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="OituI6MK7DlPU7BmWXEZ-4">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="573" y="400" as="sourcePoint" />
+            <mxPoint x="827" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OituI6MK7DlPU7BmWXEZ-10" value="onSessionCreated" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="OituI6MK7DlPU7BmWXEZ-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="440" as="sourcePoint" />
+            <mxPoint x="140" y="440" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
