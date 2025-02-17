@@ -670,3 +670,106 @@ Android IMF 框架的类图展示了以下核心关系：
 4. **数据传递**：`EditorInfo` 和 `InputConnection` 是输入法与应用之间的数据载体。
 
 通过理解这些类的关系，可以更清晰地设计自定义输入法或调试输入法相关问题。
+
+
+# 1.IMF 框架
+
+
+上述三个模块分别对应不同的进程，客户端 IMM 属于 App 应用进程，输入法 IMS 属于输入法自己的进程，输入法管理服务 IMMS 属于系统进程，三者之间需要通过 IPC 机制来进行通信， Androd中最主要的 IPC 通信方式都就是 Binder 机制。
+
+
+其中客户端 IMM 与 输入法 IMS 之间的交互已经通过 EditText 及其父类 TextView 实现，如果是自定义的编辑框，需要自行实现与输入法的交互。
+
+# 2.输入法拉起流程
+当点击一个输入框 EditText 将获得焦点，系统默认的输入法将会被拉起，EditText 继承自 TextView，关键实现在 TextView 中，拉起输入法的关键流程如下：
+
+
+可知，输入法 IMS 的拉起可由按键和触摸事件触发，经由 IMM、IMMS 通过一系列 IPC 调用拉起系统默认输入法 IMS，上述流程中省略了一些操作，实际流程要更复杂，重点关注如下返回值：
+
+```java
+// InputBindResult.java
+// 请求输入法成功
+ResultCode.SUCCESS_WITH_IME_SESSION,
+// 输入法已经启动，等待IME创建session
+ResultCode.SUCCESS_WAITING_IME_SESSION,
+// 输入法还未启动，等待输入法绑定
+ResultCode.SUCCESS_WAITING_IME_BINDING,
+```
+当没有绑定输入法和 session 没创建的时候都在等待输入法绑定和 session 创建，当完成这两步之后客户端会再次请求输入法，为便于理解上图中没有体现这个过程，拉起 IMS 的关键代码如下：
+```java
+// InputMethodManagerService.java
+InputBindResult startInputInnerLocked() {
+    // ...
+    // 绑定输入法
+    // InputMethod.SERVICE_INTERFACE(android.view.InputMethod)
+    mCurIntent = new Intent(InputMethod.SERVICE_INTERFACE);
+    mCurIntent.setComponent(info.getComponent());
+    mCurIntent.putExtra(Intent.EXTRA_CLIENT_LABEL,
+            com.android.internal.R.string.input_method_binding_label);
+    mCurIntent.putExtra(Intent.EXTRA_CLIENT_INTENT, PendingIntent.getActivity(
+            mContext, 0, new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS), 0));
+    // 绑定输入法
+    if (bindCurrentInputMethodServiceLocked(mCurIntent, this, IME_CONNECTION_BIND_FLAGS)) {
+        // ...
+        // 绑定成功
+        return new InputBindResult(
+                InputBindResult.ResultCode.SUCCESS_WAITING_IME_BINDING,
+                null, null, mCurId, mCurSeq,
+                mCurUserActionNotificationSequenceNumber);
+    }
+    // 绑定失败
+    return InputBindResult.IME_NOT_CONNECTED;
+}
+
+private boolean bindCurrentInputMethodServiceLocked(
+        Intent service, ServiceConnection conn, int flags) {
+    // ...
+    // 绑定输入法
+    return mContext.bindServiceAsUser(service, conn, flags,
+            new UserHandle(mSettings.getCurrentUserId()));
+}
+```
+
+当绑定输入法 IMS 成功后将获取到 IInputMethod 的远程服务对象 mCurMethod，通过 mCurMethod 就可以操作 IInputMethod.aidl 中定义的相关接口了，如下：
+```java
+@Override
+public void onServiceConnected(ComponentName name, IBinder service) {
+    synchronized (mMethodMap) {
+        if (mCurIntent != null && name.equals(mCurIntent.getComponent())) {
+            // 绑定输入法成功后获得操作输入法的接口IInputMethod
+            mCurMethod = IInputMethod.Stub.asInterface(service);
+            if (mCurToken == null) {
+                Slog.w(TAG, "Service connected without a token!");
+                unbindCurrentMethodLocked(false);
+                return;
+            }
+            if (DEBUG) Slog.v(TAG, "Initiating attach with token: " + mCurToken);
+            // 发送MSG_ATTACH_TOKEN生成与系统服务IMMS会话的token
+            executeOrSendMessage(mCurMethod, mCaller.obtainMessageOO(
+                    MSG_ATTACH_TOKEN, mCurMethod, mCurToken));
+            // 如果当前绑定到给输入法的客户端存在则重新创建session
+            if (mCurClient != null) {
+                clearClientSessionLocked(mCurClient);
+                requestClientSessionLocked(mCurClient);
+            }
+        }
+    }
+}
+```
+
+到此，系统输入法从编辑器 EditText 获得焦点开始到输入法 IMS 服务绑定成功的流程结束，这里注意下 startInputUncheckedLocked 方法，后续 IMM、IMMS 和 IMS 三者之间的交互关系都在其中，最终调用 showSoftInput 显示输入法。
+
+# 输入法管理服务(IMMS)
+
+
+
+# 6.IMS、IMMS和IMM之间的交互
+输入法(IMS)、输入法管理服务(IMMS)和客户端(IMM)之间的交互主要是通过一系列 aidl 进行交互的，关键 aidl 如下图所示：
+
+IMS、IMMS和IMM之间的交互如下：
+IMM 使用 IInputMethodManager 请求 IMMS。
+IMMS 绑定 IMS 获得操作输入法的相关接口 IInputMethod。
+IMMS 请求 IMS 创建 IInputMethodSession。
+IMMS 通过 IInputMethodClient 告知 IMM 当前 IInputMethodSession。
+IMM 和 IMS 通过 IInputMethodSession 和 IInputContext 交互。
+IMM、IMMS 和 IMS 三者之间的交互都是 IPC 调用，对于使用者来说无需关注三者之间的复杂调用，如上就是 Android 机制下的输入法框架。
